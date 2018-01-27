@@ -1,7 +1,7 @@
-const db = require("../db/db");
+const user = require("../models/user");
 module.exports = {
   index(req, res, next) {
-    res.render('index', { title: 'Dashboard', pageHeader: 'Danh Sách User' });
+    res.render('./users/index', { title: 'Dashboard', pageHeader: 'Danh Sách User' });
   },
   list(req, res) {
     const conn = db.getConnection();
