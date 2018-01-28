@@ -1,8 +1,14 @@
-/* body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-} */
-
-a {
-  color: #00B7FF;
+#camera{
+  min-height: 220px;
+  width: 100%;
+  display: none;
+}
+#image-camera{
+  min-height: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#canvas{
+  display: none;
 }

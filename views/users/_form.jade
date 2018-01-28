@@ -1,0 +1,48 @@
+section.content
+  div.row
+    //- <!-- left column -->
+    div.col-md-6
+      //- <!-- general form elements -->
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title Camera Chụp Hình
+        div.content.center
+          video#camera(autoplay='')
+          img(src="./images/camera.png", alt="camera" id='image-camera')
+          button(type="button" class="btn btn-primary btn-block btn-flat" id='btncapture')
+            i.fa.fa-camera
+            |    Chụp Hình
+
+    div.col-md-6
+      //- <!-- Horizontal Form -->
+      div.box.box-info.row
+        div.box-header.with-border
+          h3.box-title Thêm Thông Tin Khách Hàng
+        //- <!-- /.box-header -->
+        //- <!-- form start -->
+        .col-md-4
+          img(class="attachment-img" src="./dist/img/avatar.png" alt="Attachment Image"
+          width="100%" height="100%" id='attachment-image')
+          canvas#canvas
+        .col-md-8
+          form(class="form-horizontal")
+            div.box-body
+              div.form-group
+                label(for="inputName" class="col-sm-3 control-label") Họ Tên
+                div.col-sm-9 
+                  div.input-group            
+                    input(class="form-control" id="inputName" placeholder="Nhập Họ Tên...." type="text")
+                    div.input-group-addon
+                      i.fa.fa-keyboard-o
+              div.form-group
+                label(for="inputPhone" class="col-sm-3 control-label") Số Điện Thoại
+                div.col-sm-9
+                  div.input-group  
+                    input(class="form-control" id="inputPassword3" placeholder="Nhập Số Điện Thoại..." type="text")
+                    div.input-group-addon
+                      i.fa.fa-keyboard-o
+            //- <!-- /.box-body -->
+            div.box-footer
+              button(type="submit" class="btn btn-info pull-right") Đăng Ký
+            //- <!-- /.box-footer -->
+     
