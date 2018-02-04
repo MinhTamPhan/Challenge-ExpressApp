@@ -1,0 +1,57 @@
+extends ../share/layout
+block content
+  section.content-header
+    h1.page-header= pageHeader
+
+  section.content
+    div.row
+      //- <!-- left column -->
+      div.col-md-6
+        //- <!-- general form elements -->
+        div.box.box-primary
+          div.box-header.with-border
+            h3.box-title Camera Chụp Hình
+          div#content-camera
+            div#camera
+            img(src="./images/camera.png", alt="camera" id='image-camera' title="Click Mở Camera")
+            button(type="button" class="btn btn-primary btn-block btn-flat" id='btncapture')
+              i.fa.fa-camera
+              |    Mở Camera
+
+      div.col-md-6
+        //- <!-- Horizontal Form -->
+        div.box.box-info.row
+          div.box-header.with-border
+            h3.box-title Thêm Thông Tin Khách Hàng
+          //- <!-- /.box-header -->
+          //- <!-- form start -->
+          form(class="form-horizontal",method="POST",action="/users/update")
+            div.box-body
+              input(type="hidden" name="id" value=user._id)
+              .form-group
+                if user.phone_number
+                  img(class="attachment-img col-sm-4" src="./images/user_images/#{user.phone_number}/main.jpeg" alt="Attachment Image" width="100%" height="100%" id='attachment-image' title="Attachment Image")
+                else
+                  img(class="attachment-img col-sm-4" src="./dist/img/avatar.png" alt="Attachment Image" width="100%" height="100%" id='attachment-image' title="Attachment Image")
+                input(id="avatar" type="hidden" name="avatar")
+                .col-sm-8
+                  div.form-group
+                    label(for="inputName" class="col-sm-3 control-label") Họ Tên
+                    div.col-sm-9 
+                      div.input-group            
+                        input(class="form-control" id="inputName" placeholder="Nhập Họ Tên...." type="text" name="name" value="#{user.name}")
+                        div.input-group-addon
+                          i.fa.fa-keyboard-o
+                  div.form-group
+                    label(for="inputPhone" class="col-sm-3 control-label") Số Điện Thoại
+                    div.col-sm-9
+                      div.input-group  
+                        input(class="form-control" id="inputPassword3" placeholder="Nhập Số Điện Thoại..." type="text" name="phone_number" value="#{user.phone_number}")
+                        div.input-group-addon
+                          i.fa.fa-keyboard-o
+            //- <!-- /.box-body -->
+            div.box-footer
+              button(type="submit" class="btn btn-info pull-right") Update
+            //- <!-- /.box-footer -->
+     
+ 

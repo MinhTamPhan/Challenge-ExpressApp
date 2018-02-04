@@ -1,11 +1,7 @@
-const dbconfig = require('./db');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect(dbconfig.url);
-console.log("url moongo database: ", dbconfig.url);
 const regPhone = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
 
-let User = mongoose.model('User', {
+let userSchema = new mongoose.Schema({
   name: {
     type: String,
     min: [5, 'min length 5 character'],
@@ -19,7 +15,7 @@ let User = mongoose.model('User', {
       function(phone_number) {
         return phone_number.match(regPhone)
       },
-      `is not a valid phone number!`
+      'is not a valid phone number!'
     ] 
   },
   created_at: {
@@ -27,17 +23,4 @@ let User = mongoose.model('User', {
     default: Date.now
   }
 });
-
-let user = new User({
-   name: 'Practical Node.js',
-   phone_number: '1234567890'
-});
-// user.save((err, results) => {
-//   if (err) {
-//     console.error(err)
-//     process.exit(1)
-//   } else {
-//     console.log('Saved: ', results)
-//     process.exit(0)
-//   }
-// })
+module.exports = userSchema

@@ -1,47 +1,67 @@
 "use strict";
+let webcamHasAInstance = false;
+let handleCaptureImage = function(){
+  let data_uri = Webcam.snap();
+  $('#btncapture').html('<i class="fa fa-camera"></i>   Chụp Lại'); 
+  $('#image-camera').css({
+    width: '50%',
+    height: '50%'
+  });       
+  $('#camera').hide();  
+  $('#image-camera').show();    
+  $('#image-camera').attr("src", data_uri);
+  $("#attachment-image").attr("src", data_uri);
 
-let video = document.getElementById("camera");
-let videoObj = { "video": true };
-let canvas = document.getElementById("canvas");
+  let raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+  $('#avatar').val(raw_image_data);
+  
 
-let handleCaptureImage = () => {
-  $('#attachment-image').hide();
-  $('#canvas').show();
-  let context = canvas.getContext("2d");
-  context.drawImage(video, 0, 0, 140, 140);
-  //console.log("capture"); 
+  $("#btncapture").unbind( "click" );
+  $('#btncapture').on('click', handleClickButtonCameraOrImage);
 }
 
-let handleClickButtonCameraOrImage = () => {
+let handleClickButtonCameraOrImage = function(){
   $('#image-camera').hide();
   $('#camera').show();
-  let errBack = function(error) {
-    console.log("Video capture error: ", error.code);
-  };
-  // Put video listeners into place
-  if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia(videoObj, function(stream) {
-      video.src = stream;
-      video.play();
-    }, errBack);
-  }
-  else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia(videoObj, function(stream){
-    video.src = window.URL.createObjectURL(stream);
-    video.play();
-    }, errBack);
-  }
-  else if(navigator.mozGetUserMedia) { // WebKit-prefixed
-    navigator.mozGetUserMedia(videoObj, function(stream){
-    video.src = window.URL.createObjectURL(stream);
-    video.play();
-    }, errBack);
-  }
+  $('#btncapture').html('<i class="fa fa-camera"></i>   Chụp Hình');
+  Webcam.set({
+    width: 128,
+		height: 128,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  //set singleton Webcam
+  if (!webcamHasAInstance) {
+    webcamHasAInstance = true;
+    Webcam.attach('#camera');
+  } 
+  $('#camera>video').css({
+    width: '100%',
+    height: '100%'
+  });
 
   $("#btncapture").unbind( "click" );
   $('#btncapture').on('click', handleCaptureImage);
-  $('#camera').on('click', handleCaptureImage);
-};
+}
 
 $('#btncapture').on('click', handleClickButtonCameraOrImage);
 $('#image-camera').on('click', handleClickButtonCameraOrImage);
+
+$(function () {
+  $('#usersTable').DataTable({
+    'paging'      : true,
+    'lengthChange': true,
+    'searching'   : false,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : false
+  })
+})
+
+$(document).ready(() => {
+  console.log($('#usersTable_length>label'));
+  console.log($('#usersTable_length>label')[0].childNodes[0].text);
+  
+ 
+  $('#usersTable_length>label')[0].innerHTML = "Hiển Thị <select name=\"usersTable_length\" aria-controls=\"usersTable\" class=\"form-control input-sm\"><option value=\"10\">10</option><option value=\"25\">25</option><option value=\"50\">50</option><option value=\"100\">100</option></select>";
+});
