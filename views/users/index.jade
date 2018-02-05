@@ -8,7 +8,26 @@ block content
           div.box
             div.box-header
               h3.box-title Danh Sách User Đã Đăng Kí
+              //- .input-group
+              //-   .dataTables_length#usersTable_length Hiển Thị
+              //-   select(name="usersTable_length" aria-controls="usersTable" class="form-control input-sm")
+              //-     option(value="10") 10
+              //-     option(value="25") 25
+              //-     option(value="50") 50
+              //-     option(value="100") 100
             div.box-body
+              .dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+                .row
+                  .col-sm-6
+                    .dataTables_length#usersTable_length
+                      label 
+                        |Hiển Thị    
+                        select(name="usersTable_length" aria-controls="usersTable" class="form-control input-sm")
+                          option(value="10") 10
+                          option(value="25") 25
+                          option(value="50") 50
+                          option(value="100") 100
+
               table.table.table-bordered.table-striped#usersTable
                 thead
                   tr

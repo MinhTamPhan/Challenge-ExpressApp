@@ -49,7 +49,7 @@ $('#image-camera').on('click', handleClickButtonCameraOrImage);
 
 $(function () {
   $('#usersTable').DataTable({
-    'paging'      : true,
+    'paging'      : false,
     'lengthChange': true,
     'searching'   : false,
     'ordering'    : true,
@@ -58,10 +58,10 @@ $(function () {
   })
 })
 
-$(document).ready(() => {
-  console.log($('#usersTable_length>label'));
-  console.log($('#usersTable_length>label')[0].childNodes[0].text);
+// $(document).ready(() => {
+//   console.log($('#usersTable_length>label'));
+//   console.log($('#usersTable_length>label')[0].childNodes[0].text);
   
  
-  $('#usersTable_length>label')[0].innerHTML = "Hiển Thị <select name=\"usersTable_length\" aria-controls=\"usersTable\" class=\"form-control input-sm\"><option value=\"10\">10</option><option value=\"25\">25</option><option value=\"50\">50</option><option value=\"100\">100</option></select>";
-});
+//   $('#usersTable_length>label')[0].innerHTML = "Hiển Thị <select name=\"usersTable_length\" aria-controls=\"usersTable\" class=\"form-control input-sm\"><option value=\"10\">10</option><option value=\"25\">25</option><option value=\"50\">50</option><option value=\"100\">100</option></select>";
+// });
